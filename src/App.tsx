@@ -1,14 +1,10 @@
-import React from 'react';
-
-import { Layout, Menu, Breadcrumb } from 'antd';
-import './App.css';
-import AppRouter from './main/routers/AppRouter';
-const { Header, Content, Footer } = Layout;
+import AppRouter from 'main/routers/AppRouter'
+import React from 'react'
 
 class App extends React.Component {
   public render() {
-    return <AppRouter />;
+    return <AppRouter />
   }
 }
 
-export default App;
+export default App

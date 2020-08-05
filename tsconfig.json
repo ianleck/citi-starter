@@ -2,10 +2,11 @@
   "compilerOptions": {
     "target": "es5",
     "lib": [
+      "es6",
       "dom",
-      "dom.iterable",
-      "esnext"
+      "es2017"
     ],
+    "baseUrl": "src",
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -19,6 +20,13 @@
     "noEmit": true,
     "jsx": "react"
   },
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "webpack",
+    "jest",
+  ],
   "include": [
     "src"
   ]
