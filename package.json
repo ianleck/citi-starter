@@ -12,13 +12,17 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
     "antd": "^4.5.2",
+    "eslint-plugin-simple-import-sort": "^5.0.3",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.5",
     "react-scripts": "3.4.1",
     "styled-components": "^5.1.1",
     "typescript": "^3.7.5",
-    "webpack": "^4.44.1",
+    "webpack": "4.42.0",
     "webpack-cli": "^3.3.12"
   },
   "scripts": {
@@ -26,9 +30,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
@@ -41,5 +42,69 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "plugins": [
+      "simple-import-sort"
+    ],
+    "rules": {
+      "no-restricted-imports": [
+        "error",
+        {
+          "paths": [
+            {
+              "name": "styled-components",
+              "message": "Please import from styled-components/macro."
+            }
+          ],
+          "patterns": [
+            "!styled-components/macro"
+          ]
+        }
+      ],
+      "simple-import-sort/sort": [
+        "error",
+        {
+          "groups": [
+            [
+              "^\\u0000"
+            ],
+            [
+              "^@?\\w"
+            ],
+            [
+              "^(src)(/.*|$)"
+            ],
+            [
+              "^[^.]"
+            ],
+            [
+              "^\\."
+            ]
+          ]
+        }
+      ],
+      "react/self-closing-comp": [
+        "error",
+        {
+          "component": true,
+          "html": true
+        }
+      ]
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{js,css,md}": "prettier --write"
   }
 }
